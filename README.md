@@ -9,6 +9,8 @@
   - will update it preference
   - and reset all 3 text fields
 
-![[screenshot_01.png|200]]  
+<p style=float:left">
+  <img src="screenshot_01.png" width="250" />
+</p>
 
 ref: demo-datastore-preferences-app-android-kotlin-compose
