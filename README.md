@@ -13,7 +13,7 @@
   - we update the 3 textfield and layout choice to preferences
 
 <p style=float:left">
-  <img src="screenshot_01.png" width="250" />
+  <img src="screenshot.png" width="250" />
 </p>
 
 ref: demo-datastore-preferences-app-android-kotlin-compose
