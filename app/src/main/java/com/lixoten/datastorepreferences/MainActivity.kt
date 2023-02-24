@@ -56,7 +56,6 @@ private fun Main() {
     // Create an instance of the UserPreferencesRepository
     val userPreferencesRepository by lazy { UserPreferencesRepository(context) }
 
-    //val userPreferences by userPreferencesDataStore.userPreferencesFlow.collectAsState(initial = UserPreferences("","","",false, 0) )
     val userPreferences by userPreferencesRepository.userPreferencesFlow.collectAsState(initial = UserPreferences() )
     val scope = rememberCoroutineScope()
 

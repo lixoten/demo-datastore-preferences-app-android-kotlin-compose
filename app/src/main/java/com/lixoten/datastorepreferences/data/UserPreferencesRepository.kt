@@ -34,7 +34,6 @@ object UserPreferencesKeys {
 
 // Define a DataStore class to store and retrieve your data
 class UserPreferencesRepository(private val context: Context) {
-    //private val dataStore = context.createDataStore("user_preferences")
     private val dataStore = context.dataStore
 
     // Update the user preferences
