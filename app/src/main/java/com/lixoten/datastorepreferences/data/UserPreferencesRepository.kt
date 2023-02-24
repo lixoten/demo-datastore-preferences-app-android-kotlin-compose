@@ -41,16 +41,15 @@ class UserPreferencesRepository(private val context: Context) {
         firstName: String,
         lastName: String,
         age: Int,
-        //toggleIcon: Boolean,
     ) {
         dataStore.edit { preferences ->
             preferences[FIRST_NAME] = firstName
             preferences[LAST_NAME] = lastName
             preferences[AGE] = age
-            //preferences[TOGGLE_ICON] = toggleIcon
         }
     }
 
+    // Wanted ot to be separate... playing around
     // Update the user preferences
     suspend fun updateUserPreferencesIcon(
         toggleIcon: Boolean,

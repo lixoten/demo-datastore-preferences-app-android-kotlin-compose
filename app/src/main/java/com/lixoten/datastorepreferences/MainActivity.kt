@@ -5,18 +5,14 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -56,9 +52,7 @@ private fun Main() {
     // Create an instance of the UserPreferencesRepository
     val userPreferencesRepository by lazy { UserPreferencesRepository(context) }
 
-    val userPreferences by userPreferencesRepository.userPreferencesFlow.collectAsState(initial = UserPreferences() )
-    val scope = rememberCoroutineScope()
-
+    val userPreferences by userPreferencesRepository.userPreferencesFlow.collectAsState(initial = UserPreferences())
 
     // This is a String
     var firstName by remember {
@@ -96,11 +90,11 @@ private fun Main() {
 
     Column(
         modifier = Modifier.clickable { keyboardController?.hide() },
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(modifier = Modifier.height(30.dp))
 
-        Text(text = "Data Storage Example", fontWeight = FontWeight.Bold)
+        Text(text = "Data Storage Preference Example", fontWeight = FontWeight.Bold)
 
         Spacer(modifier = Modifier.height(15.dp))
 
@@ -111,27 +105,52 @@ private fun Main() {
 
         Spacer(modifier = Modifier.height(15.dp))
 
-        TextField(
-            value = firstName,
-            onValueChange = { firstName = it },
-            label = { Text(text = "First Name")}
-        )
+        Column(horizontalAlignment = Alignment.Start) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "Grid or View: ")
+                IconButton(
+                    onClick = {
+                        toggleIcon = !toggleIcon
+//                        scope.launch {
+//                            userPreferencesRepository.updateUserPreferencesIcon(
+//                                toggleIcon
+//                            )
+//                        }
+                    }
+                ) {
+                    Icon(
+                        imageVector = if (toggleIcon) Icons.Default.GridView else Icons.Default.ViewList,
+                        contentDescription = null
+                    )
+                }
 
+            }
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            TextField(
+                value = firstName,
+                onValueChange = { firstName = it },
+                label = { Text(text = "First Name") }
+            )
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            TextField(
+                value = lastName,
+                onValueChange = { lastName = it },
+                label = { Text(text = "Last Name") }
+            )
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            TextField(
+                value = age,
+                onValueChange = { age = it },
+                label = { Text(text = "Age(numeric)") }
+            )
+        }
         Spacer(modifier = Modifier.height(30.dp))
-
-        TextField(
-            value = lastName,
-            onValueChange = { lastName = it },
-            label = { Text(text = "Last Name")}
-        )
-
-        Spacer(modifier = Modifier.height(30.dp))
-
-        TextField(
-            value = age,
-            onValueChange = { age = it },
-            label = { Text(text = "Age(numeric)")}
-        )
 
         Button(
             onClick = {
@@ -140,31 +159,14 @@ private fun Main() {
                         firstName,
                         lastName.text,
                         age.text.toInt(),
-                        //toggleIcon,
                     )
-                }
-            }
-        ) {
-            Text(text = "Update")
-        }
-
-        IconButton(
-            onClick = {
-                toggleIcon = !toggleIcon
-                scope.launch {
-                    //userPreferencesRepository.saveLayoutPreference(isLinearLayout)
                     userPreferencesRepository.updateUserPreferencesIcon(
                         toggleIcon
                     )
                 }
             }
         ) {
-            Icon(
-                imageVector = Icons.Default.Favorite,
-                tint = if (toggleIcon) Color.Red else Color.LightGray,
-                contentDescription = null
-            )
-
+            Text(text = "Save Settings")
         }
     }
 }

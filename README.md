@@ -3,11 +3,14 @@
  
 ## Just an app for me to learn DataStore Preferences concepts
 
-- Updating the 3 Text Fields and Saving
-  - updates the preferences for them
-- Clicking Favorite Icon 
-  - will update it preference
-  - and reset all 3 text fields
+- Note: We are not using a viewmodel yet
+- Display Screen
+  - Data is initialized in viewModel from saved preferences
+  - Displays 3 Text Fields
+  - Layout Choice Icon(toggles)
+  - Save Settings Button
+- on Save Settings Button Click
+  - we update the 3 textfield and layout choice to preferences
 
 <p style=float:left">
   <img src="screenshot_01.png" width="250" />
