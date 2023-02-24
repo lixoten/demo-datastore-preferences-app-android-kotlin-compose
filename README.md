@@ -9,7 +9,6 @@
   - will update it preference
   - and reset all 3 text fields
 
-
-## Please comment if you see I am doing something wrong, or have a better way of doing it
+![[screenshot_01.png|200]]  
 
 ref: demo-datastore-preferences-app-android-kotlin-compose
