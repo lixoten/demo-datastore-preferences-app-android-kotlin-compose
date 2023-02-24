@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.lixoten.datastorepreferences.data.UserPreferences
-import com.lixoten.datastorepreferences.data.UserPreferencesDataStore
+import com.lixoten.datastorepreferences.data.UserPreferencesRepository
 import com.lixoten.datastorepreferences.ui.theme.DataStorePreferencesTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -53,11 +53,11 @@ private fun Main() {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    // Create an instance of the UserPreferencesDataStore
-    val userPreferencesDataStore by lazy { UserPreferencesDataStore(context) }
+    // Create an instance of the UserPreferencesRepository
+    val userPreferencesRepository by lazy { UserPreferencesRepository(context) }
 
     //val userPreferences by userPreferencesDataStore.userPreferencesFlow.collectAsState(initial = UserPreferences("","","",false, 0) )
-    val userPreferences by userPreferencesDataStore.userPreferencesFlow.collectAsState(initial = UserPreferences() )
+    val userPreferences by userPreferencesRepository.userPreferencesFlow.collectAsState(initial = UserPreferences() )
     val scope = rememberCoroutineScope()
 
 
@@ -137,7 +137,7 @@ private fun Main() {
         Button(
             onClick = {
                 CoroutineScope(Dispatchers.IO).launch {
-                    userPreferencesDataStore.updateUserPreferences(
+                    userPreferencesRepository.updateUserPreferences(
                         firstName,
                         lastName.text,
                         age.text.toInt(),
@@ -154,7 +154,7 @@ private fun Main() {
                 toggleIcon = !toggleIcon
                 scope.launch {
                     //userPreferencesRepository.saveLayoutPreference(isLinearLayout)
-                    userPreferencesDataStore.updateUserPreferencesIcon(
+                    userPreferencesRepository.updateUserPreferencesIcon(
                         toggleIcon
                     )
                 }
