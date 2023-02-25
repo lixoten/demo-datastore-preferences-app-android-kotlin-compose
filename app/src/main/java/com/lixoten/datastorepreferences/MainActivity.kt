@@ -94,7 +94,7 @@ private fun Main() {
     ) {
         Spacer(modifier = Modifier.height(30.dp))
 
-        Text(text = "Data Storage Preference Example", fontWeight = FontWeight.Bold)
+        Text(text = "DataStore Preference Example", fontWeight = FontWeight.Bold)
 
         Spacer(modifier = Modifier.height(15.dp))
 
