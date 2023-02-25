@@ -5,12 +5,12 @@
 
 - Note: We are not using a viewmodel yet
 - Display Screen
-  - Data is initialized in viewModel from saved preferences
+  - Data is initialized from saved preferences
   - Displays 3 Text Fields
   - Layout Choice Icon(toggles)
   - Save Settings Button
 - on Save Settings Button Click
-  - we update the 3 textfield and layout choice to preferences
+  - we update the 3 TextField and layout choice to preferences
 
 <p style=float:left">
   <img src="screenshot.png" width="250" />
